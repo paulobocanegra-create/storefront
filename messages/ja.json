@@ -1,4 +1,9 @@
 {
+	"theme": {
+		"toggle": "カラーテーマを切り替える",
+		"switchToLight": "ライトモードに切り替える",
+		"switchToDark": "ダークモードに切り替える"
+	},
 	"cart": {
 		"drawer": {
 			"itemCount": "{count, plural, other {# 点}}",

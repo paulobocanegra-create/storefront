@@ -20,6 +20,7 @@ import { speedInsightsSampleRate } from "@/lib/speed-insights";
 import { webAnalyticsEnabled } from "@/lib/analytics/web-analytics";
 import { AnalyticsMount } from "@/ui/components/analytics-mount";
 import { WebAnalytics } from "@/ui/components/web-analytics";
+import { ThemeProvider } from "@/ui/components/theme-provider";
 
 /**
  * Root defaults + `og:locale` derived from the URL locale segment. Params-only, so it
@@ -78,20 +79,22 @@ export default async function LocaleRootLayout({
 	const mediaOrigin = saleorMediaPreconnectOrigin();
 
 	return (
-		<html {...htmlProps}>
+		<html {...htmlProps} suppressHydrationWarning>
 			{/* No crossOrigin: plain <img> fetches are not CORS, and a `crossorigin`
 			    preconnect would warm a connection the image load cannot reuse. */}
 			{mediaOrigin && <link rel="preconnect" href={mediaOrigin} />}
 			<body className="min-h-dvh font-sans">
-				<NextIntlClientProvider locale={localeSlug} messages={messages} timeZone={getDefaultTimeZone()}>
-					<PersistBrowseLocaleCookie locale={localeSlug} />
-					{children}
-					{/* Sampled — unsampled Speed Insights dominates the Vercel bill at scale. */}
-					<SpeedInsights sampleRate={speedInsightsSampleRate()} />
-					{/* Unsampled page views — the denominator; URLs are redacted in beforeSend. */}
-					{webAnalyticsEnabled() && <WebAnalytics />}
-				</NextIntlClientProvider>
-				<AnalyticsMount />
+				<ThemeProvider>
+					<NextIntlClientProvider locale={localeSlug} messages={messages} timeZone={getDefaultTimeZone()}>
+						<PersistBrowseLocaleCookie locale={localeSlug} />
+						{children}
+						{/* Sampled — unsampled Speed Insights dominates the Vercel bill at scale. */}
+						<SpeedInsights sampleRate={speedInsightsSampleRate()} />
+						{/* Unsampled page views — the denominator; URLs are redacted in beforeSend. */}
+						{webAnalyticsEnabled() && <WebAnalytics />}
+					</NextIntlClientProvider>
+					<AnalyticsMount />
+				</ThemeProvider>
 			</body>
 		</html>
 	);

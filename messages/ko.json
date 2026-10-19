@@ -1,4 +1,9 @@
 {
+	"theme": {
+		"toggle": "색상 테마 전환",
+		"switchToLight": "라이트 모드로 전환",
+		"switchToDark": "다크 모드로 전환"
+	},
 	"cart": {
 		"drawer": {
 			"itemCount": "{count, plural, other {상품 #개}}",

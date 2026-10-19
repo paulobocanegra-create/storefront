@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Logo } from "@/ui/components/logo";
 import { Logo as SharedLogo } from "@/ui/components/shared/logo";
+import { ThemeToggle } from "@/ui/components/nav/components/theme-toggle";
 import { UserMenuSkeleton } from "@/ui/components/nav/components/user-menu/user-menu-container";
 import {
 	HeaderActionsSlot,
@@ -63,6 +64,7 @@ export function BrowseHeaderFrame({ params }: { params: BrowseRouteParams }) {
 					</Suspense>
 
 					<div className="flex items-center gap-1">
+						<ThemeToggle />
 						<Suspense fallback={<HeaderActionsSkeleton />}>
 							<HeaderActionsSlot params={params} />
 						</Suspense>

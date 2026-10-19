@@ -1,4 +1,9 @@
 {
+	"theme": {
+		"toggle": "Bytt fargetema",
+		"switchToLight": "Bytt til lys modus",
+		"switchToDark": "Bytt til mørk modus"
+	},
 	"cart": {
 		"drawer": {
 			"itemCount": "{count, plural, one {# vare} other {# varer}}",

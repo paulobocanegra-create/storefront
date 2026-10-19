@@ -1,4 +1,9 @@
 {
+	"theme": {
+		"toggle": "Vaihda väriteemaa",
+		"switchToLight": "Vaihda vaaleaan tilaan",
+		"switchToDark": "Vaihda tummaan tilaan"
+	},
 	"cart": {
 		"drawer": {
 			"itemCount": "{count, plural, one {# tuote} other {# tuotetta}}",
