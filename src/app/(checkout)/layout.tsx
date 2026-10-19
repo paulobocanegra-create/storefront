@@ -9,6 +9,7 @@ import { speedInsightsSampleRate } from "@/lib/speed-insights";
 import { webAnalyticsEnabled } from "@/lib/analytics/web-analytics";
 import { AnalyticsMount } from "@/ui/components/analytics-mount";
 import { WebAnalytics } from "@/ui/components/web-analytics";
+import { ThemeProvider } from "@/ui/components/theme-provider";
 
 const defaultHtmlLang = resolveLocaleFromSlug(getDefaultLocaleSlug()).htmlLang;
 
@@ -23,14 +24,16 @@ export default function CheckoutLayout(props: { children: ReactNode }) {
 	const htmlProps = getRootHtmlFontProps(defaultHtmlLang);
 
 	return (
-		<html {...htmlProps} className={cn(htmlProps.className, GeistMono.variable)}>
+		<html {...htmlProps} className={cn(htmlProps.className, GeistMono.variable)} suppressHydrationWarning>
 			<body className="min-h-dvh font-sans">
-				<main className="min-h-dvh">{props.children}</main>
-				{/* Sampled — unsampled Speed Insights dominates the Vercel bill at scale. */}
-				<SpeedInsights sampleRate={speedInsightsSampleRate()} />
-				{/* Unsampled page views — the denominator; `?checkout=` and `/order/<key>` are redacted in beforeSend. */}
-				{webAnalyticsEnabled() && <WebAnalytics />}
-				<AnalyticsMount />
+				<ThemeProvider>
+					<main className="min-h-dvh">{props.children}</main>
+					{/* Sampled — unsampled Speed Insights dominates the Vercel bill at scale. */}
+					<SpeedInsights sampleRate={speedInsightsSampleRate()} />
+					{/* Unsampled page views — the denominator; `?checkout=` and `/order/<key>` are redacted in beforeSend. */}
+					{webAnalyticsEnabled() && <WebAnalytics />}
+					<AnalyticsMount />
+				</ThemeProvider>
 			</body>
 		</html>
 	);

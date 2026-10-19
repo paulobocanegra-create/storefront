@@ -1,4 +1,9 @@
 {
+	"theme": {
+		"toggle": "Changer de thème",
+		"switchToLight": "Passer au mode clair",
+		"switchToDark": "Passer au mode sombre"
+	},
 	"cart": {
 		"drawer": {
 			"itemCount": "{count, plural, one {# article} other {# articles}}",

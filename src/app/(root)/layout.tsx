@@ -3,6 +3,7 @@ import { type ReactNode } from "react";
 import { rootMetadata } from "@/lib/seo";
 import { getDefaultLocaleSlug, resolveLocaleFromSlug } from "@/config/locale";
 import { getRootHtmlFontProps } from "@/lib/fonts";
+import { ThemeProvider } from "@/ui/components/theme-provider";
 
 export const metadata = rootMetadata;
 
@@ -17,8 +18,10 @@ export default function RootGroupLayout({ children }: { children: ReactNode }) {
 	const htmlProps = getRootHtmlFontProps(htmlLang);
 
 	return (
-		<html {...htmlProps}>
-			<body className="min-h-dvh font-sans">{children}</body>
+		<html {...htmlProps} suppressHydrationWarning>
+			<body className="min-h-dvh font-sans">
+				<ThemeProvider>{children}</ThemeProvider>
+			</body>
 		</html>
 	);
 }

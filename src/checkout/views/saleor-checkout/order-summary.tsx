@@ -550,7 +550,7 @@ function CheckoutPromoSection({ checkout, onCheckoutChange }: CheckoutPromoSecti
 								setPromoError(null);
 							}}
 							aria-invalid={Boolean(promoError)}
-							className="h-10 bg-white pl-10 text-sm"
+							className="h-10 bg-background pl-10 text-sm"
 							disabled={isPromoBusy}
 						/>
 					</div>
@@ -558,7 +558,7 @@ function CheckoutPromoSection({ checkout, onCheckoutChange }: CheckoutPromoSecti
 						type="submit"
 						variant="outline-solid"
 						disabled={!promoCode.trim() || isPromoBusy}
-						className="h-10 bg-white px-4 text-sm"
+						className="h-10 bg-background px-4 text-sm"
 					>
 						{isPromoBusy ? tPromo("applying") : tPromo("apply")}
 					</Button>

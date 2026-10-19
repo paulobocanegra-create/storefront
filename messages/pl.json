@@ -1,4 +1,9 @@
 {
+	"theme": {
+		"toggle": "Zmień motyw",
+		"switchToLight": "Włącz tryb jasny",
+		"switchToDark": "Włącz tryb ciemny"
+	},
 	"cart": {
 		"drawer": {
 			"itemCount": "{count, plural, one {# produkt} few {# produkty} many {# produktów} other {# produktu}}",
