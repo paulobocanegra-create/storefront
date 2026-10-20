@@ -25,7 +25,8 @@ export default function CheckoutLayout(props: { children: ReactNode }) {
 
 	return (
 		<html {...htmlProps} className={cn(htmlProps.className, GeistMono.variable)} suppressHydrationWarning>
-			<body className="min-h-dvh font-sans">
+			{/* Extensions may inject body attributes before hydration; descendants remain checked. */}
+			<body className="min-h-dvh font-sans" suppressHydrationWarning>
 				<ThemeProvider>
 					<main className="min-h-dvh">{props.children}</main>
 					{/* Sampled — unsampled Speed Insights dominates the Vercel bill at scale. */}
