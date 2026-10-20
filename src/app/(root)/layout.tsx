@@ -19,7 +19,8 @@ export default function RootGroupLayout({ children }: { children: ReactNode }) {
 
 	return (
 		<html {...htmlProps} suppressHydrationWarning>
-			<body className="min-h-dvh font-sans">
+			{/* Extensions may inject body attributes before hydration; descendants remain checked. */}
+			<body className="min-h-dvh font-sans" suppressHydrationWarning>
 				<ThemeProvider>{children}</ThemeProvider>
 			</body>
 		</html>

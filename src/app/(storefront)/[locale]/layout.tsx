@@ -83,7 +83,8 @@ export default async function LocaleRootLayout({
 			{/* No crossOrigin: plain <img> fetches are not CORS, and a `crossorigin`
 			    preconnect would warm a connection the image load cannot reuse. */}
 			{mediaOrigin && <link rel="preconnect" href={mediaOrigin} />}
-			<body className="min-h-dvh font-sans">
+			{/* Extensions may inject body attributes before hydration; descendants remain checked. */}
+			<body className="min-h-dvh font-sans" suppressHydrationWarning>
 				<ThemeProvider>
 					<NextIntlClientProvider locale={localeSlug} messages={messages} timeZone={getDefaultTimeZone()}>
 						<PersistBrowseLocaleCookie locale={localeSlug} />
